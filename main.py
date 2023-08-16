@@ -1,12 +1,10 @@
 import pygame
 import sys
 from player import *
+from settings import *
 
 pygame.init()
-clock = pygame.time.Clock()
 
-screen_width = 1280
-screen_height = 960
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('rpg_game')
 
@@ -24,6 +22,8 @@ while True:
 
     screen.fill(bg_color)
     pygame.draw.rect(screen, light_grey, player)
+    text = font.render(f'{player.world_x}, {player.world_y}', True, WHITE, bg_color)
+    screen.blit(text, text.get_rect())
 
     pygame.display.flip()
     clock.tick(60)

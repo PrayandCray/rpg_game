@@ -11,8 +11,10 @@ class Player():
         self.height = height
         self.rect = pygame.Rect(x, y, width, height)
         self.speed = speed
+        self.world_x = 0
+        self.world_y = 0
 
-    def move(self, x_coordinate, y_coordinate, screen_width, screen_height):
+    def move(self, screen_width, screen_height):
         
         keys=pygame.key.get_pressed()
         if keys[pygame.K_w]:
@@ -29,15 +31,15 @@ class Player():
         
         if self.rect.left <= 0:
             self.rect.right = screen_width - 1
-            x_coordinate -= 1
+            self.world_x -= 1
         if self.rect.right >= screen_width:
             self.rect.left = 1
-            x_coordinate += 1
+            self.world_x += 1
         if self.rect.top <= 0:
             self.rect.bottom = screen_height - 1
-            y_coordinate += 1
+            self.world_y += 1
         if self.rect.bottom >= screen_height:
-            y_coordinate -= 1
+            self.world_y -= 1
             self.rect.top = 1
         self.x = self.rect.x
         self.y = self.rect.y
